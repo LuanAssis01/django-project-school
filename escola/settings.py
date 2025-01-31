@@ -92,7 +92,12 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 1,
+    'DEFAULT_THROTTLING_CLASSES': (  
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '2/minute',  # Limite para usuários não autenticados
+        'user': '3/minute'   # Limite para usuários autenticados
+    }
 }
-
-#token key
-#   Token e26f890fda48a2b45f3b935492a3563c0b7447a4
